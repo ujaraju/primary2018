@@ -1,0 +1,41 @@
+<div
+  class="video"
+  data-video="
+    {% if url contains 'youtube' %}
+      youtube
+    {% else if url contains 'vimeo %}
+      vimeo
+    {% endif %}
+  "
+>
+  {% if placeholder %}
+    <div
+      class="video-placeholder video-placeholder-{{ style }}"
+      style="background-image: url('{{ placeholder | img_url: '1000x' }}')"
+      data-video-placeholder
+    >
+      <button
+        class="video-play-button"
+        data-video-play-button
+      >
+        {%
+          include 'icon',
+          id: 'play',
+          class: 'video-play-icon'
+        %}
+
+        {%
+          include 'icon',
+          id: 'loader',
+          class: 'video-loading-icon'
+        %}
+      </button>
+    </div>
+  {% endif %}
+
+  {% if url contains 'youtube' %}
+    <div class="youtube" data-youtube data-video-url="{{ url }}"></div>
+  {% else if url contains 'vimeo' %}
+    <div class="vimeo" data-vimeo data-video-url="{{ url }}"></div>
+  {% endif %}
+</div>
